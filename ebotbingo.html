@@ -1,0 +1,53 @@
+<head>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h2 {
+        cursor: pointer;
+    }
+    .bingo-cell {
+        width: 18%;
+        height: 15%;
+        float: left;
+        border: 1px solid #3d3d3d;
+        padding: 5px;
+    }
+    </style>
+    </head>
+<body>
+</body>
+<script>
+    var cellTextValues = [
+        'iPhone 7 plus',
+        'IE11',
+        'Cursor jumping',
+        'Edit table not disappearing',
+        'Could not reproduce',
+        'Quick fix',
+        'Duplicate',
+        'Vague/Needs more info',
+        'Not actually a bug',
+        'Giap Feature'
+    ]
+    function makeBingoCard () {
+        document.body.innerHTML = '<h2 onclick="makeBingoCard()">e-bot7 Backlog Bingo (click to make new card)</h2>';
+        for (i = 0; i < 25; i++) {
+            var bingoCell = document.createElement('div');
+            bingoCell.className = 'bingo-cell';
+            bingoCell.textContent = getRandomCellTextValue();
+            if (i === 12) bingoCell.textContent = 'FREE SPACE'
+            bingoCell.onclick = clickBingoCell
+            document.body.appendChild(bingoCell);
+        }
+    }
+    function clickBingoCell (event) {
+        if (event.target.style.backgroundColor === 'red') {
+            event.target.style.backgroundColor = 'white'    
+        } else event.target.style.backgroundColor = 'red'
+    }
+    function getRandomCellTextValue () {
+        return cellTextValues[Math.floor(Math.random()*(cellTextValues.length - 1))];
+    }
+    makeBingoCard()
+</script>
